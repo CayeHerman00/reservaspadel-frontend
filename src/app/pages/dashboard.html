@@ -1,0 +1,225 @@
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#1a1c1f] flex flex-col p-6 gap-2 z-50">
+<div class="mb-8 px-4">
+<h1 class="text-xl font-bold text-white font-headline tracking-tighter">ReservasPadel</h1>
+<p class="text-xs text-on-surface-variant opacity-70 mt-1 uppercase tracking-widest">Club Pro Padel</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 bg-[#0052FF] text-white rounded-lg px-4 py-3 shadow-[0_0_20px_rgba(0,82,255,0.3)] font-body font-medium text-sm transition-all active:scale-98" routerLink="/dashboard">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Inicio</span>
+</a>
+<a class="flex items-center gap-3 text-[#c3c5d9] px-4 py-3 hover:bg-[#37393d] hover:translate-x-1 rounded-lg font-body font-medium text-sm transition-all active:scale-98" routerLink="/configurador">
+<span class="material-symbols-outlined">layers</span>
+<span>Mis Pistas 3D</span>
+</a>
+<a class="flex items-center gap-3 text-[#c3c5d9] px-4 py-3 hover:bg-[#37393d] hover:translate-x-1 rounded-lg font-body font-medium text-sm transition-all active:scale-98" routerLink="/calendario">
+<span class="material-symbols-outlined">calendar_today</span>
+<span>Calendario de Reservas</span>
+</a>
+<a class="flex items-center gap-3 text-[#c3c5d9] px-4 py-3 hover:bg-[#37393d] hover:translate-x-1 rounded-lg font-body font-medium text-sm transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Configuracion</span>
+</a>
+</nav>
+<div class="mt-auto space-y-4 pt-6 border-t border-outline-variant/15">
+<button class="kinetic-gradient w-full py-3 rounded-lg font-bold text-white text-sm shadow-xl flex items-center justify-center gap-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-sm">add</span>
+Nueva Reserva
+</button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 text-[#c3c5d9] px-4 py-2 hover:bg-[#37393d] hover:translate-x-1 rounded-lg text-xs transition-all" href="#">
+<span class="material-symbols-outlined text-lg">help</span>
+Soporte
+</a>
+<a class="flex items-center gap-3 text-error/80 px-4 py-2 hover:bg-error-container/20 hover:translate-x-1 rounded-lg text-xs transition-all" href="#">
+<span class="material-symbols-outlined text-lg">logout</span>
+Cerrar Sesion
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen p-8 lg:p-12">
+<header class="flex justify-between items-end mb-12">
+<div>
+<h2 class="text-4xl font-headline font-black text-secondary tracking-tight">Panel de Control</h2>
+<p class="text-on-surface-variant font-medium mt-2">Bienvenido de nuevo, Director del Club.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right">
+<p class="text-sm font-bold text-white">Luis Martinez</p>
+<p class="text-xs text-on-surface-variant">Administrador Senior</p>
+</div>
+<div class="h-12 w-12 rounded-full bg-surface-container-highest border border-outline-variant/20 overflow-hidden">
+<img class="w-full h-full object-cover" alt="Club administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxkrIcZDiJEiGBcPQS7gdJql4baI2ZUn2aq-QUUiXARihNrzRXARIj_3zP9-Xi73silSiqPRemwbmh3e0NCpxx4PxTuCta9RRat7syXlw8VlKFCS4xTpNBXhbJoDMNexicE9q0g3jx0XUSQoof5cgSvSJIY8bGfGzhA7xkpA46tboxWgqD0PHXdIUgQMUJ1xkvKwugaS7S-x3VQ6cjh-FHwUTSoDGGsc4tqlcW7ByWY0_ia852JMGmjziZP-Kc8MZRiJzfMYVxqsIo"/>
+</div>
+</div>
+</header>
+<!-- Stats Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">confirmation_number</span>
+</div>
+<p class="text-on-surface-variant text-sm font-bold uppercase tracking-widest mb-2">Total Reservas</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-4xl font-headline font-bold text-white">1,284</h3>
+<span class="text-secondary-fixed text-xs font-bold">+12% este mes</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">sports_tennis</span>
+</div>
+<p class="text-on-surface-variant text-sm font-bold uppercase tracking-widest mb-2">Pistas Activas</p>
+<div class="flex items-center gap-3">
+<h3 class="text-4xl font-headline font-bold text-white">8/10</h3>
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span>
+<span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-xl border border-primary-container/20 relative overflow-hidden group">
+<div class="absolute inset-0 kinetic-gradient opacity-5"></div>
+<p class="text-on-surface-variant text-sm font-bold uppercase tracking-widest mb-2">Ocupacion Media</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-4xl font-headline font-bold text-primary">94.2%</h3>
+<span class="text-on-surface-variant text-xs font-medium">Pico: 18:00h</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-4 overflow-hidden">
+<div class="h-full kinetic-gradient w-[94.2%]"></div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+<div class="lg:col-span-2 space-y-8">
+<div class="bg-surface-container-low rounded-xl overflow-hidden group cursor-pointer relative">
+<div class="h-64 relative">
+<img class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-80 transition-all duration-700" alt="3D padel court render" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmmQlJ5-GOlsHTFiqJxNzrRwfKdfOOY9sU14zfnppNBJy1tZWW-W3QGYbhVsoXGUqSmiTqU86fceXcblnCxEIms8BzyiCo8fG2kbBIqn6Fqx2ZECVkkM5EWwDJqS7SXk7CQ20QICu69g-3Fnyb4yC-xgAlLeDYRss0w3dhQaDtosIJEEyKo3VzBRgC653yfRe1gYMWh9I8iUYEQaJogSZLq4-C0L6OtnDHgDgTz3773bSxngyE-c_8zj597UUaU00Q0lFuKrSxsoV7"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+<div class="absolute inset-0 flex flex-col justify-end p-8">
+<h4 class="text-2xl font-headline font-extrabold text-white">Configurador de Pistas 3D</h4>
+<p class="text-on-surface-variant max-w-md mt-2">Visualiza y anade nuevas pistas a tu inventario con nuestro motor de renderizado en tiempo real.</p>
+<button class="mt-6 flex items-center gap-2 bg-white text-surface px-6 py-2.5 rounded-lg font-bold text-sm w-fit hover:bg-secondary-fixed transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+Anadir Nueva Pista 3D
+</button>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<h4 class="text-xl font-headline font-bold text-white">Proximos Encuentros</h4>
+<button class="text-primary text-xs font-bold uppercase tracking-widest hover:underline">Ver Todos</button>
+</div>
+<div class="space-y-3">
+<div class="bg-surface-container p-4 rounded-xl flex items-center gap-6 hover:bg-surface-bright transition-colors border-l-4 border-secondary-fixed">
+<div class="text-center min-w-[60px]">
+<p class="text-xs font-bold text-on-surface-variant uppercase">16:30</p>
+<p class="text-sm font-black text-white">HOY</p>
+</div>
+<div class="flex-1">
+<p class="text-white font-bold">Pista Central: Torneo Amateur</p>
+<p class="text-xs text-on-surface-variant">4 Jugadores &bull; Nivel 3.5-4.0</p>
+</div>
+<div class="flex -space-x-3">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-variant"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-variant"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-variant"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-variant flex items-center justify-center text-[10px] font-bold">+1</div>
+</div>
+</div>
+<div class="bg-surface-container p-4 rounded-xl flex items-center gap-6 hover:bg-surface-bright transition-colors border-l-4 border-primary-container">
+<div class="text-center min-w-[60px]">
+<p class="text-xs font-bold text-on-surface-variant uppercase">18:00</p>
+<p class="text-sm font-black text-white">HOY</p>
+</div>
+<div class="flex-1">
+<p class="text-white font-bold">Pista 4: Clase Particular</p>
+<p class="text-xs text-on-surface-variant">Monitor: Carlos V. &bull; Alumno: Javier G.</p>
+</div>
+<span class="bg-primary-container/20 text-primary-fixed text-[10px] px-2 py-1 rounded font-bold uppercase tracking-tighter">Premium</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Column -->
+<div class="space-y-8">
+<div class="bg-surface-container-low p-6 rounded-xl">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline font-bold text-white">Calendario</h4>
+<span class="text-on-surface-variant text-xs">Junio 2024</span>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center text-[10px] font-bold text-on-surface-variant uppercase mb-4">
+<span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center">
+<span class="p-2 text-xs opacity-20">28</span>
+<span class="p-2 text-xs opacity-20">29</span>
+<span class="p-2 text-xs opacity-20">30</span>
+<span class="p-2 text-xs hover:bg-surface-bright rounded-lg cursor-pointer">1</span>
+<span class="p-2 text-xs hover:bg-surface-bright rounded-lg cursor-pointer">2</span>
+<span class="p-2 text-xs hover:bg-surface-bright rounded-lg cursor-pointer">3</span>
+<span class="p-2 text-xs hover:bg-surface-bright rounded-lg cursor-pointer font-bold text-secondary-fixed">4</span>
+<span class="p-2 text-xs bg-primary-container text-white rounded-lg cursor-pointer font-bold">5</span>
+<span class="p-2 text-xs hover:bg-surface-bright rounded-lg cursor-pointer">6</span>
+<span class="p-2 text-xs hover:bg-surface-bright rounded-lg cursor-pointer">7</span>
+<span class="p-2 text-xs hover:bg-surface-bright rounded-lg cursor-pointer">8</span>
+<span class="p-2 text-xs hover:bg-surface-bright rounded-lg cursor-pointer">9</span>
+<span class="p-2 text-xs hover:bg-surface-bright rounded-lg cursor-pointer">10</span>
+<span class="p-2 text-xs hover:bg-surface-bright rounded-lg cursor-pointer">11</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl">
+<h4 class="font-headline font-bold text-white mb-6">Estado del Club</h4>
+<div class="space-y-6">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-secondary-fixed animate-pulse"></span>
+<span class="text-sm font-medium">Suministros Iluminacion</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant">OPTIMO</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-error"></span>
+<span class="text-sm font-medium">Mantenimiento Pista 2</span>
+</div>
+<span class="text-xs font-bold text-error">PENDIENTE</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-secondary-fixed"></span>
+<span class="text-sm font-medium">Cafeteria Stock</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant">80%</span>
+</div>
+</div>
+</div>
+<div class="kinetic-gradient p-[1px] rounded-xl overflow-hidden">
+<div class="bg-surface-container-low p-6 rounded-[calc(0.75rem-1px)]">
+<h5 class="text-white font-bold">Necesitas ayuda?</h5>
+<p class="text-xs text-on-surface-variant mt-2 leading-relaxed">Contacta con tu gestor de cuenta asignado para optimizar el rendimiento de tu club.</p>
+<button class="mt-4 w-full border border-outline-variant/30 py-2 rounded-lg text-xs font-bold text-white hover:bg-surface-bright transition-colors">
+Hablar con Soporte
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-20 pt-12 border-t border-outline-variant/15 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col gap-2">
+<span class="text-lg font-black text-white font-headline tracking-tighter">ReservasPadel</span>
+<p class="font-body text-[10px] uppercase tracking-[0.2em] text-on-surface-variant">&copy; 2024 Kinetic Court Experience.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-body text-xs uppercase tracking-widest text-[#c3c5d9] hover:text-white hover:underline decoration-[#0052FF] underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#">Privacidad</a>
+<a class="font-body text-xs uppercase tracking-widest text-[#c3c5d9] hover:text-white hover:underline decoration-[#0052FF] underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#">Terminos</a>
+<a class="font-body text-xs uppercase tracking-widest text-[#c3c5d9] hover:text-white hover:underline decoration-[#0052FF] underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#">Contacto</a>
+<a class="font-body text-xs uppercase tracking-widest text-[#caf300] hover:text-white hover:underline decoration-[#0052FF] underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#">Ayuda</a>
+</div>
+</footer>
+</main>

@@ -1,0 +1,61 @@
+.glass-panel {
+  background: rgba(30, 32, 35, 0.6);
+  backdrop-filter: blur(24px);
+}
+
+.signature-gradient {
+  background: linear-gradient(135deg, #0052ff 0%, #00dbe9 100%);
+}
+
+@keyframes realistic-bounce {
+  0%, 100% { transform: translateY(0) scaleX(1) scaleY(1); }
+  44% { transform: translateY(-146px) scaleX(1) scaleY(1); }
+  50% { transform: translateY(-158px) scaleX(1.03) scaleY(0.97); }
+  56% { transform: translateY(-146px) scaleX(1) scaleY(1); }
+  95% { transform: translateY(0) scaleX(1) scaleY(1); }
+  98% { transform: translateY(5px) scaleX(1.16) scaleY(0.84); }
+}
+
+.padel-ball-bounce {
+  animation: realistic-bounce 2.2s infinite ease-in-out;
+}
+
+.padel-ball-realistic {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 9999px;
+  background: url('/padel-ball-realistic.svg') center / cover no-repeat;
+  filter: drop-shadow(0 0 14px rgba(202, 243, 0, 0.18)) drop-shadow(0 12px 20px rgba(0, 0, 0, 0.32));
+  animation: ball-spin 2.2s infinite linear;
+  transform-origin: center;
+}
+
+.padel-ball-realistic::after {
+  content: '';
+  position: absolute;
+  inset: -14%;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(202, 243, 0, 0.22) 0%, rgba(202, 243, 0, 0.12) 38%, transparent 70%);
+  filter: blur(10px);
+  z-index: -1;
+}
+
+.ball-shadow {
+  width: 5.75rem;
+  height: 1.15rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.46) 0%, rgba(0, 0, 0, 0.24) 52%, transparent 78%);
+  filter: blur(10px);
+  animation: shadow-scale 2.2s infinite ease-in-out;
+}
+
+@keyframes ball-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shadow-scale {
+  0%, 100% { transform: scale(1.1); opacity: 0.42; }
+  50% { transform: scale(0.42); opacity: 0.08; }
+}

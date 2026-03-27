@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { SidebarComponent } from '../../shared/sidebar/sidebar';
 
 @Component({
   selector: 'app-configurador',
-  imports: [RouterLink],
+  imports: [SidebarComponent],
   templateUrl: './configurador.html',
   styleUrl: './configurador.css'
 })
-export class Configurador {}
+export class Configurador {
+  sidebarCollapsed = false;
+}

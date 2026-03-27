@@ -1,0 +1,112 @@
+[1m[33m
+Warning: This is a simple server for use in testing or debugging Angular applications
+locally. It hasn't been reviewed for security issues.
+
+Binding this server to an open connection can result in compromising your application or
+computer. Using a different host than the one passed to the "--host" flag might result in
+websocket connection issues.
+    [39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2341: Property 'ts' is private and only accessible within class 'MisPistas'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/mis-pistas/mis-pistas.html:84:43:
+[37m      84 │ ...       <button (click)="onEditCourt([32mts[37m.get('courts.court1.name'))"
+         ╵                                        [32m~~[0m
+
+  Error occurs in the template of component MisPistas.
+
+    src/app/pages/mis-pistas/mis-pistas.ts:14:15:
+[37m      14 │   templateUrl: [32m'./mis-pistas.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2341: Property 'ts' is private and only accessible within class 'MisPistas'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/mis-pistas/mis-pistas.html:89:45:
+[37m      89 │ ...     <button (click)="onDeleteCourt([32mts[37m.get('courts.court1.name'))"
+         ╵                                        [32m~~[0m
+
+  Error occurs in the template of component MisPistas.
+
+    src/app/pages/mis-pistas/mis-pistas.ts:14:15:
+[37m      14 │   templateUrl: [32m'./mis-pistas.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2341: Property 'ts' is private and only accessible within class 'MisPistas'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/mis-pistas/mis-pistas.html:111:43:
+[37m      111 │ ...      <button (click)="onEditCourt([32mts[37m.get('courts.court2.name'))"
+          ╵                                       [32m~~[0m
+
+  Error occurs in the template of component MisPistas.
+
+    src/app/pages/mis-pistas/mis-pistas.ts:14:15:
+[37m      14 │   templateUrl: [32m'./mis-pistas.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2341: Property 'ts' is private and only accessible within class 'MisPistas'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/mis-pistas/mis-pistas.html:116:45:
+[37m      116 │ ...    <button (click)="onDeleteCourt([32mts[37m.get('courts.court2.name'))"
+          ╵                                       [32m~~[0m
+
+  Error occurs in the template of component MisPistas.
+
+    src/app/pages/mis-pistas/mis-pistas.ts:14:15:
+[37m      14 │   templateUrl: [32m'./mis-pistas.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2341: Property 'ts' is private and only accessible within class 'MisPistas'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/mis-pistas/mis-pistas.html:139:43:
+[37m      139 │ ...      <button (click)="onEditCourt([32mts[37m.get('courts.court3.name'))"
+          ╵                                       [32m~~[0m
+
+  Error occurs in the template of component MisPistas.
+
+    src/app/pages/mis-pistas/mis-pistas.ts:14:15:
+[37m      14 │   templateUrl: [32m'./mis-pistas.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2341: Property 'ts' is private and only accessible within class 'MisPistas'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/mis-pistas/mis-pistas.html:144:45:
+[37m      144 │ ...    <button (click)="onDeleteCourt([32mts[37m.get('courts.court3.name'))"
+          ╵                                       [32m~~[0m
+
+  Error occurs in the template of component MisPistas.
+
+    src/app/pages/mis-pistas/mis-pistas.ts:14:15:
+[37m      14 │   templateUrl: [32m'./mis-pistas.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2341: Property 'ts' is private and only accessible within class 'MisPistas'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/mis-pistas/mis-pistas.html:166:43:
+[37m      166 │ ...      <button (click)="onEditCourt([32mts[37m.get('courts.court4.name'))"
+          ╵                                       [32m~~[0m
+
+  Error occurs in the template of component MisPistas.
+
+    src/app/pages/mis-pistas/mis-pistas.ts:14:15:
+[37m      14 │   templateUrl: [32m'./mis-pistas.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2341: Property 'ts' is private and only accessible within class 'MisPistas'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/mis-pistas/mis-pistas.html:171:45:
+[37m      171 │ ...    <button (click)="onDeleteCourt([32mts[37m.get('courts.court4.name'))"
+          ╵                                       [32m~~[0m
+
+  Error occurs in the template of component MisPistas.
+
+    src/app/pages/mis-pistas/mis-pistas.ts:14:15:
+[37m      14 │   templateUrl: [32m'./mis-pistas.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m

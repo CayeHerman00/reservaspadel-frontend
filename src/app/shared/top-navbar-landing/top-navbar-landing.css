@@ -1,0 +1,35 @@
+:host {
+  display: block;
+}
+
+.landing-user-menu {
+  backdrop-filter: blur(22px);
+}
+
+.landing-menu-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.9rem;
+  padding: 0.85rem 0.9rem;
+  color: #c3c5d9;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.landing-menu-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+.landing-menu-item--danger {
+  color: #f0a39d;
+}
+
+.landing-menu-item--danger:hover {
+  background: rgba(214, 64, 53, 0.12);
+  color: #ffffff;
+}

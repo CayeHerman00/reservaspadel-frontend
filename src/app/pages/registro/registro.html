@@ -1,0 +1,144 @@
+<div class="fixed inset-0 z-0 overflow-hidden">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(0,82,255,0.08)_0%,_transparent_50%)]"></div>
+  <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-container/10 blur-[120px] rounded-full"></div>
+  <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-tertiary/10 blur-[120px] rounded-full"></div>
+</div>
+
+<main class="relative z-10 h-screen overflow-hidden flex items-center justify-center p-4 lg:p-6">
+  <div class="w-full max-w-[1000px] max-h-[calc(100vh-2rem)] lg:max-h-[calc(100vh-3rem)] grid grid-cols-1 lg:grid-cols-2 rounded-xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.6)] glass-panel border border-outline-variant/15">
+
+    <!-- Brand Side -->
+    <div class="relative hidden lg:flex flex-col justify-between p-10 bg-surface-container-low overflow-hidden">
+      <div>
+        <h1 class="font-headline font-black text-3xl tracking-tighter text-white mb-2">{{ 'login.brandTitle' | translate }}</h1>
+        <p class="text-on-surface-variant font-medium">{{ 'login.brandSubtitle' | translate }}</p>
+      </div>
+
+      <!-- Animated Ball -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div class="relative mt-32">
+          <div class="ball-shadow mx-auto"></div>
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 padel-ball-bounce">
+            <div class="padel-ball-realistic" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative z-20">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-8 h-[2px] bg-primary-container"></span>
+          <span class="text-xs font-bold uppercase tracking-widest text-primary-fixed-dim">{{ 'login.velocityCourt' | translate }}</span>
+        </div>
+        <blockquote class="text-lg font-light text-on-surface/80 italic">{{ 'login.quote' | translate }}</blockquote>
+      </div>
+
+      <div class="absolute top-0 right-0 p-8 opacity-10">
+        <span class="material-symbols-outlined text-9xl">sports_tennis</span>
+      </div>
+    </div>
+
+    <!-- Form Side -->
+    <div class="p-6 lg:p-8 flex flex-col bg-surface-container">
+      <div class="mb-4">
+        <a class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant transition-colors hover:text-white" [routerLink]="['/']">
+          <span class="material-symbols-outlined text-base">arrow_back</span>
+          {{ 'common.backToMainMenu' | translate }}
+        </a>
+      </div>
+
+      <div class="flex gap-8 mb-6 border-b border-outline-variant/10">
+        <button class="pb-4 text-sm font-bold tracking-wider text-on-surface-variant hover:text-white transition-all" [routerLink]="['/login']">{{ 'login.tabLogin' | translate }}</button>
+        <button class="pb-4 text-sm font-bold tracking-wider text-white border-b-2 border-primary-container transition-all">{{ 'login.tabSignup' | translate }}</button>
+      </div>
+
+      <div class="mb-6">
+        <h2 class="font-headline text-[2rem] font-bold text-white mb-2 leading-tight">{{ 'register.title' | translate }}</h2>
+        <p class="text-on-surface-variant text-sm">{{ 'register.subtitle' | translate }}</p>
+      </div>
+
+      <form class="space-y-4">
+        <!-- Username -->
+        <div class="space-y-2">
+          <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-tighter ml-1">{{ 'login.username' | translate }}</label>
+          <div class="relative group">
+            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">person</span>
+            <input
+              [(ngModel)]="username"
+              name="username"
+              class="w-full bg-surface-container-lowest rounded-lg py-3.5 pl-12 pr-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary transition-all duration-300"
+              [class.ring-1]="usernameError"
+              [class.ring-red-500]="usernameError"
+              [placeholder]="'login.usernamePlaceholder' | translate"
+              type="text" />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="space-y-2">
+          <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-tighter ml-1">{{ 'login.email' | translate }}</label>
+          <div class="relative group">
+            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">mail</span>
+            <input
+              [(ngModel)]="email"
+              name="email"
+              class="w-full bg-surface-container-lowest rounded-lg py-3.5 pl-12 pr-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary transition-all duration-300"
+              [class.ring-1]="emailError"
+              [class.ring-red-500]="emailError"
+              [placeholder]="'login.emailPlaceholder' | translate"
+              type="email" />
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="space-y-2">
+          <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-tighter ml-1">{{ 'login.password' | translate }}</label>
+          <div class="relative group">
+            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">lock</span>
+            <input
+              [(ngModel)]="password"
+              name="password"
+              class="w-full bg-surface-container-lowest rounded-lg py-3.5 pl-12 pr-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary transition-all duration-300"
+              [class.ring-1]="passwordError"
+              [class.ring-red-500]="passwordError"
+              [placeholder]="'login.passwordPlaceholder' | translate"
+              type="password" />
+          </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="space-y-2">
+          <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-tighter ml-1">{{ 'register.confirmPassword' | translate }}</label>
+          <div class="relative group">
+            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">lock</span>
+            <input
+              [(ngModel)]="confirmPassword"
+              name="confirmPassword"
+              class="w-full bg-surface-container-lowest rounded-lg py-3.5 pl-12 pr-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary transition-all duration-300"
+              [class.ring-1]="confirmPasswordError"
+              [class.ring-red-500]="confirmPasswordError"
+              [placeholder]="'login.passwordPlaceholder' | translate"
+              type="password" />
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 px-1">
+          <input class="w-4 h-4 rounded bg-surface-container-lowest text-primary-container focus:ring-0 focus:ring-offset-0 transition-all cursor-pointer" id="terms" type="checkbox" />
+          <label class="text-xs text-on-surface-variant cursor-pointer select-none" for="terms">{{ 'register.terms' | translate }}</label>
+        </div>
+
+        <button type="button" (click)="onRegister()" [disabled]="isSubmitting" class="w-full signature-gradient text-white font-bold py-3.5 rounded-lg shadow-[0_10px_20px_rgba(0,82,255,0.2)] hover:shadow-[0_15px_30px_rgba(0,82,255,0.4)] active:scale-[0.98] transition-all duration-300 uppercase tracking-widest text-sm disabled:opacity-60 disabled:cursor-not-allowed">{{ 'register.button' | translate }}</button>
+      </form>
+
+      <div class="mt-auto pt-5 flex justify-center">
+        <a class="flex items-center gap-2 text-xs font-medium text-on-surface-variant hover:text-primary transition-colors cursor-pointer" (click)="onContactSupport()">
+          <span class="material-symbols-outlined text-sm">contact_support</span>
+          {{ 'login.contactSupport' | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed bottom-12 right-12 hidden xl:block opacity-20 pointer-events-none">
+    <h3 class="font-headline font-black text-9xl leading-none text-white select-none">PK</h3>
+  </div>
+</main>

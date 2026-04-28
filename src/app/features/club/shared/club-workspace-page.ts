@@ -36,8 +36,15 @@ export abstract class ClubWorkspacePage {
   }
 
   onLogout(): void {
-    this.authService.logout();
-    this.feedback.showLogoutSuccess();
-    this.router.navigateByUrl(this.appRoutes.login);
+    this.authService.logout().subscribe({
+      next: () => {
+        this.feedback.showLogoutSuccess();
+        this.router.navigateByUrl(this.appRoutes.login);
+      },
+      error: () => {
+        this.feedback.showLogoutSuccess();
+        this.router.navigateByUrl(this.appRoutes.login);
+      }
+    });
   }
 }

@@ -1,21 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { finalize, map, Observable, tap } from 'rxjs';
 
 interface LoginResponse {
   token: string;
-  tipo: string;
+  type: string;
+  username: string;
   email: string;
-  rol: string;
-  nombre: string;
+  role: string;
 }
 
 interface RegisterResponse {
   id: number;
-  nombre: string;
+  username: string;
   email: string;
-  rol: string;
-  fechaCreacion: string;
+  role: string;
+  createdAt: string;
 }
 
 export interface AuthSession {
@@ -54,10 +54,10 @@ export class AuthService {
       .pipe(
         map(response => ({
           token: response.token,
-          tokenType: response.tipo,
+          tokenType: response.type,
           email: response.email,
-          role: response.rol,
-          name: response.nombre,
+          role: response.role,
+          name: response.username,
         })),
         tap(session => this.persistSession(session))
       );
@@ -73,15 +73,21 @@ export class AuthService {
       .pipe(
         map(response => ({
           id: response.id,
-          name: response.nombre,
+          name: response.username,
           email: response.email,
-          role: response.rol,
-          createdAt: response.fechaCreacion,
+          role: response.role,
+          createdAt: response.createdAt,
         }))
       );
   }
 
-  logout(): void {
+  logout(): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/logout`, null).pipe(
+      finalize(() => this.clearSession())
+    );
+  }
+
+  private clearSession(): void {
     this.session.set(null);
     localStorage.removeItem(this.storageKey);
   }

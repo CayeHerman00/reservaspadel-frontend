@@ -1,19 +1,24 @@
 import { Routes } from '@angular/router';
-import { Landing } from './pages/landing/landing';
-import { RegistroInteresados } from './pages/registro-interesados/registro-interesados';
-import { Dashboard } from './pages/dashboard/dashboard';
-import { Calendario } from './pages/calendar/calendario';
-import { MisPistas } from './pages/mis-pistas/mis-pistas';
-import { Login } from './pages/login/login';
-import { Registro } from './pages/registro/registro';
-import { authGuard } from './shared/auth/auth.guard';
+import { authGuard } from '@app/core/auth/auth.guard';
+import { LoginPage } from '@app/features/access/login/login';
+import { RegisterPage } from '@app/features/access/register/register';
+import { ConfiguratorPage } from '@app/features/club/configurator/configurator';
+import { CourtsPage } from '@app/features/club/courts/courts';
+import { DashboardPage } from '@app/features/club/overview/dashboard';
+import { ReservationCalendarPage } from '@app/features/club/reservations/reservation-calendar';
+import { LandingPage } from '@app/features/marketing/landing/landing';
+import { PricingPage } from '@app/features/marketing/pricing/pricing';
+import { WaitlistPage } from '@app/features/marketing/waitlist/waitlist';
+import { APP_ROUTE_SEGMENTS } from '@app/shared/navigation/app-navigation';
 
 export const routes: Routes = [
-  { path: '', component: Landing },
-  { path: 'waitlist', component: RegistroInteresados },
-  { path: 'login', component: Login },
-  { path: 'register', component: Registro },
-  { path: 'dashboard', component: Dashboard, canActivate: [authGuard] },
-  { path: 'calendar', component: Calendario, canActivate: [authGuard] },
-  { path: 'courts', component: MisPistas, canActivate: [authGuard] },
+  { path: APP_ROUTE_SEGMENTS.home, component: LandingPage },
+  { path: APP_ROUTE_SEGMENTS.waitlist, component: WaitlistPage },
+  { path: APP_ROUTE_SEGMENTS.pricing, component: PricingPage },
+  { path: APP_ROUTE_SEGMENTS.login, component: LoginPage },
+  { path: APP_ROUTE_SEGMENTS.register, component: RegisterPage },
+  { path: APP_ROUTE_SEGMENTS.dashboard, component: DashboardPage, canActivate: [authGuard] },
+  { path: APP_ROUTE_SEGMENTS.calendar, component: ReservationCalendarPage, canActivate: [authGuard] },
+  { path: APP_ROUTE_SEGMENTS.courts, component: CourtsPage, canActivate: [authGuard] },
+  { path: APP_ROUTE_SEGMENTS.configurator, component: ConfiguratorPage, canActivate: [authGuard] },
 ];

@@ -1,0 +1,74 @@
+<nav class="fixed top-0 z-50 flex h-20 w-full items-center justify-between border-b border-white/5 bg-[#111316]/60 px-8 shadow-2xl shadow-black/40 backdrop-blur-xl">
+  <div class="flex items-center gap-8">
+    <a [routerLink]="appRoutes.home" class="text-2xl font-black tracking-tighter text-white font-headline transition-opacity hover:opacity-90">
+      {{ 'common.brand' | translate }}
+    </a>
+    <div class="hidden gap-6 md:flex">
+      @for (link of navigationLinks(); track link.id) {
+        <button
+          type="button"
+          class="font-headline font-bold tracking-tight text-[#c3c5d9] transition-colors hover:text-white"
+          (click)="onLinkSelected(link)">
+          {{ link.labelKey | translate }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="flex items-center gap-4">
+    @if (session(); as user) {
+      <div class="relative">
+        <button
+          type="button"
+          class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-2 text-left transition-all hover:border-white/20 hover:bg-white/[0.06]"
+          [class.border-primary/40]="userMenuOpen()"
+          [class.bg-primary/10]="userMenuOpen()"
+          (click)="toggleUserMenu($event)">
+          <div class="hidden min-w-0 sm:block">
+            <p class="truncate text-sm font-bold text-white">{{ user.name }}</p>
+            <p class="truncate text-xs text-on-surface-variant">{{ user.email }}</p>
+          </div>
+          <div class="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-[#1f273a] text-sm font-black uppercase text-white shadow-[0_0_20px_rgba(0,82,255,0.18)]">
+            {{ userInitials() }}
+          </div>
+          <span class="material-symbols-outlined text-base text-on-surface-variant transition-transform" [class.rotate-180]="userMenuOpen()">expand_more</span>
+        </button>
+
+        @if (userMenuOpen()) {
+          <div class="landing-user-menu absolute right-0 top-[calc(100%+0.75rem)] w-72 overflow-hidden rounded-2xl border border-white/10 bg-[#171a21]/95 shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
+            <div class="border-b border-white/8 px-4 py-4">
+              <p class="text-sm font-bold text-white">{{ user.name }}</p>
+              <p class="mt-1 text-xs text-on-surface-variant">{{ user.email }}</p>
+            </div>
+
+            <div class="p-2">
+              <button type="button" class="landing-menu-item" (click)="goToDashboard()">
+                <span class="material-symbols-outlined text-base">dashboard</span>
+                <span>{{ 'dashboard.title' | translate }}</span>
+              </button>
+              <button type="button" class="landing-menu-item" (click)="goToCourts()">
+                <span class="material-symbols-outlined text-base">layers</span>
+                <span>{{ 'sidebar.courts' | translate }}</span>
+              </button>
+              <button type="button" class="landing-menu-item" (click)="goToCalendar()">
+                <span class="material-symbols-outlined text-base">calendar_today</span>
+                <span>{{ 'sidebar.calendar' | translate }}</span>
+              </button>
+              <button type="button" class="landing-menu-item landing-menu-item--danger" (click)="logout()">
+                <span class="material-symbols-outlined text-base">logout</span>
+                <span>{{ 'common.logout' | translate }}</span>
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <button [routerLink]="appRoutes.login" class="rounded-lg px-5 py-2 font-medium text-white transition-all duration-200 hover:bg-[#37393d] active:scale-95">
+        {{ 'common.login' | translate }}
+      </button>
+      <button [routerLink]="appRoutes.register" class="rounded-lg bg-[#0052ff] px-6 py-2.5 font-bold text-white shadow-[0_0_20px_rgba(0,82,255,0.3)] transition-all active:scale-95 hover:-translate-y-[2px]">
+        {{ 'common.register' | translate }}
+      </button>
+    }
+  </div>
+</nav>

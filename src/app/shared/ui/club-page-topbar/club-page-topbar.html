@@ -1,0 +1,24 @@
+<header class="mb-12 flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
+  <div class="min-w-0">
+    <div class="mb-3 flex flex-wrap items-center gap-3">
+      <h2 class="text-4xl font-headline font-black tracking-tight text-white">{{ title() }}</h2>
+      <ng-content select="[header-badges]"></ng-content>
+    </div>
+
+    @if (subtitle()) {
+      <p class="max-w-2xl text-lg leading-relaxed text-on-surface-variant">{{ subtitle() }}</p>
+    }
+
+    <ng-content select="[header-details]"></ng-content>
+  </div>
+
+  <div class="flex w-full flex-col gap-4 xl:min-w-[520px] xl:w-auto xl:items-end">
+    <app-club-user-summary
+      [name]="userName()"
+      [secondaryText]="userSecondaryText()"
+      [initials]="userInitials()">
+    </app-club-user-summary>
+
+    <ng-content select="[header-controls]"></ng-content>
+  </div>
+</header>

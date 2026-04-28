@@ -1,0 +1,80 @@
+<app-auth-shell
+  activeTab="register"
+  titleKey="register.title"
+  subtitleKey="register.subtitle"
+  [compact]="true"
+  (supportClick)="onContactSupport()">
+  <form class="space-y-4" (ngSubmit)="submitRegistration()">
+    <div class="space-y-2">
+      <label class="ml-1 block text-xs font-bold uppercase tracking-tighter text-on-surface-variant">{{ 'login.username' | translate }}</label>
+      <div class="group relative">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant transition-colors group-focus-within:text-primary">person</span>
+        <input
+          [(ngModel)]="username"
+          name="username"
+          class="w-full rounded-lg bg-surface-container-lowest py-3.5 pl-12 pr-4 text-on-surface placeholder:text-outline/50 transition-all duration-300 focus:ring-1 focus:ring-primary"
+          [class.ring-1]="usernameError"
+          [class.ring-red-500]="usernameError"
+          [placeholder]="'login.usernamePlaceholder' | translate"
+          type="text" />
+      </div>
+    </div>
+
+    <div class="space-y-2">
+      <label class="ml-1 block text-xs font-bold uppercase tracking-tighter text-on-surface-variant">{{ 'login.email' | translate }}</label>
+      <div class="group relative">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant transition-colors group-focus-within:text-primary">mail</span>
+        <input
+          [(ngModel)]="email"
+          name="email"
+          class="w-full rounded-lg bg-surface-container-lowest py-3.5 pl-12 pr-4 text-on-surface placeholder:text-outline/50 transition-all duration-300 focus:ring-1 focus:ring-primary"
+          [class.ring-1]="emailError"
+          [class.ring-red-500]="emailError"
+          [placeholder]="'login.emailPlaceholder' | translate"
+          type="email" />
+      </div>
+    </div>
+
+    <div class="space-y-2">
+      <label class="ml-1 block text-xs font-bold uppercase tracking-tighter text-on-surface-variant">{{ 'login.password' | translate }}</label>
+      <div class="group relative">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant transition-colors group-focus-within:text-primary">lock</span>
+        <input
+          [(ngModel)]="password"
+          name="password"
+          class="w-full rounded-lg bg-surface-container-lowest py-3.5 pl-12 pr-4 text-on-surface placeholder:text-outline/50 transition-all duration-300 focus:ring-1 focus:ring-primary"
+          [class.ring-1]="passwordError"
+          [class.ring-red-500]="passwordError"
+          [placeholder]="'login.passwordPlaceholder' | translate"
+          type="password" />
+      </div>
+    </div>
+
+    <div class="space-y-2">
+      <label class="ml-1 block text-xs font-bold uppercase tracking-tighter text-on-surface-variant">{{ 'register.confirmPassword' | translate }}</label>
+      <div class="group relative">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant transition-colors group-focus-within:text-primary">lock</span>
+        <input
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          class="w-full rounded-lg bg-surface-container-lowest py-3.5 pl-12 pr-4 text-on-surface placeholder:text-outline/50 transition-all duration-300 focus:ring-1 focus:ring-primary"
+          [class.ring-1]="confirmPasswordError"
+          [class.ring-red-500]="confirmPasswordError"
+          [placeholder]="'login.passwordPlaceholder' | translate"
+          type="password" />
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2 px-1">
+      <input class="h-4 w-4 cursor-pointer rounded bg-surface-container-lowest text-primary-container transition-all focus:ring-0 focus:ring-offset-0" id="terms" type="checkbox" />
+      <label class="cursor-pointer select-none text-xs text-on-surface-variant" for="terms">{{ 'register.terms' | translate }}</label>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="isSubmitting"
+      class="w-full rounded-lg py-3.5 text-sm font-bold uppercase tracking-widest text-white signature-gradient shadow-[0_10px_20px_rgba(0,82,255,0.2)] transition-all duration-300 hover:shadow-[0_15px_30px_rgba(0,82,255,0.4)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60">
+      {{ 'register.button' | translate }}
+    </button>
+  </form>
+</app-auth-shell>

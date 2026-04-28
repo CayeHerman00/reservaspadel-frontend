@@ -1,0 +1,10 @@
+@import "../../../shared/ui/marketing-hero-title/marketing-hero-title.css";
+
+:host {
+  display: block;
+}
+
+.dot-pattern {
+  background-image: radial-gradient(#434656 1px, transparent 1px);
+  background-size: 40px 40px;
+}

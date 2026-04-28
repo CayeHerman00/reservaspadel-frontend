@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NotificationComponent } from './shared/notification/notification.component';
+import { NotificationComponent } from '@app/core/notifications/notification.component';
 
 @Component({
   selector: 'app-root',

@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  overflow-x: hidden;
+}
+
+.court-surface-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none;
+}
+
+.court-surface-select::-ms-expand {
+  display: none;
+}

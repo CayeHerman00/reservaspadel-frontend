@@ -1,0 +1,109 @@
+<app-public-top-navbar
+  [navigationLinks]="navbarLinks"
+  (linkSelected)="onNavbarLinkSelected($event)">
+</app-public-top-navbar>
+
+<main class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-container/20 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-tertiary/10 rounded-full blur-[150px]"></div>
+    <div class="absolute inset-0 opacity-20 pointer-events-none dot-pattern"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-8 grid lg:grid-cols-12 gap-16 items-center py-16">
+    <div class="lg:col-span-7 space-y-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container border border-outline-variant/15 text-secondary-fixed text-xs font-bold uppercase tracking-widest">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-secondary-fixed"></span>
+        </span>
+        {{ 'interesados.badge' | translate }}
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-title__row">{{ 'interesados.titleLine1' | translate }}</span>
+        <span class="hero-title__row">{{ 'interesados.titleLine2' | translate }}</span>
+        <span class="hero-title__row">
+          <span class="hero-title__accent">{{ 'interesados.titleHighlight' | translate }}</span>
+        </span>
+      </h1>
+      <p class="text-on-surface-variant text-lg md:text-xl max-w-xl font-light leading-relaxed">{{ 'interesados.description' | translate }}</p>
+
+      <div class="max-w-md space-y-4">
+        <form
+          (ngSubmit)="onWaitlistSubmit()"
+          class="flex flex-col sm:flex-row gap-3 p-2 rounded-xl bg-surface-container-lowest border border-outline-variant/15 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all"
+          [class.border-red-500]="emailError">
+          <input
+            [(ngModel)]="waitlistEmail"
+            name="waitlistEmail"
+            type="email"
+            [placeholder]="'interesados.placeholder' | translate"
+            class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface px-4 py-3 font-body outline-none" />
+          <button
+            type="submit"
+            class="px-8 py-3 rounded-lg bg-secondary-container text-on-secondary-container font-headline font-bold uppercase tracking-wider hover:brightness-110 active:scale-95 transition-all">
+            {{ 'interesados.button' | translate }}
+          </button>
+        </form>
+        @if (emailError) {
+          <p class="text-red-400 text-xs ml-2">{{ 'validation.email' | translate }}</p>
+        }
+        <div class="flex items-center gap-4 px-2">
+          <p class="text-on-surface-variant text-xs font-medium">
+            {{ 'interesados.counter' | translate }}
+            <span class="text-secondary font-bold">{{ 'interesados.counterHighlight' | translate }}</span>
+            {{ 'interesados.counterSuffix' | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="relative rounded-2xl overflow-hidden aspect-square lg:aspect-[4/5] shadow-2xl group">
+        <img
+          class="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700 opacity-60"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPZRojSeKOHYDlPfQkiaTH09BIixDsBhYlUUVeMldNyCdLDQAED4qm_IEpS9OY5CnTokAkVdrSlo0ufrlSEcM_9hl04cZykBU_R3T1LW1n2Hp0m-1ZMPHym6JriHeFLH-PDCI150q4zcYQQghvRMyu2F8vm9JIiM82YIxEL47iQs8QaEUbomH37u7bPteZtdpnpHhC1lNLV1llwgFaSbm9ykQuXae29xXxhY16_paSyBYTcqTc1Ta7RfN30RwPV7iXFXfxt0rTny3I"
+          alt="Indoor padel court" />
+        <div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent"></div>
+
+        <div class="absolute bottom-8 left-8 right-8 glass-panel p-6 rounded-2xl border border-white/5 space-y-4">
+          <div class="flex justify-between items-center">
+            <span class="text-white font-headline font-bold text-lg uppercase">{{ 'interesados.performance' | translate }}</span>
+            <span class="material-symbols-outlined text-secondary-fixed">trending_up</span>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-1">
+              <p class="text-on-surface-variant text-[10px] uppercase font-bold tracking-widest">{{ 'interesados.occupancy' | translate }}</p>
+              <p class="text-2xl font-headline font-black text-white">94%</p>
+            </div>
+            <div class="space-y-1">
+              <p class="text-on-surface-variant text-[10px] uppercase font-bold tracking-widest">{{ 'interesados.revenue' | translate }}</p>
+              <p class="text-2xl font-headline font-black text-secondary-fixed">+22%</p>
+            </div>
+          </div>
+          <div class="h-1 bg-white/10 rounded-full overflow-hidden">
+            <div class="h-full kinetic-gradient w-3/4"></div>
+          </div>
+        </div>
+
+        <div class="absolute top-8 right-8 p-4 glass-panel rounded-xl border border-white/5 animate-bounce">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-primary-container/20 flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary">analytics</span>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">{{ 'interesados.dataEngine' | translate }}</p>
+              <p class="text-sm font-bold text-white">{{ 'interesados.neuralOptimizer' | translate }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="bg-[#111316] px-8 py-12">
+  <div class="mx-auto max-w-7xl">
+    <app-footer-bar></app-footer-bar>
+  </div>
+</div>

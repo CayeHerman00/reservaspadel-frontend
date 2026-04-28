@@ -1,0 +1,194 @@
+<app-sidebar
+  [(collapsed)]="sidebarCollapsed"
+  activeSection="courts"
+  primaryActionLabelKey="sidebar.newCourt"
+  (primaryActionClick)="openCreateCourtModal()"
+  (supportClick)="onSupport()"
+  (logoutClick)="onLogout()"
+  (settingsClick)="onSettings()">
+</app-sidebar>
+
+<main class="min-h-screen overflow-x-hidden bg-surface p-8 lg:p-12 transition-all duration-300" [class.ml-64]="!sidebarCollapsed" [class.ml-20]="sidebarCollapsed">
+  <app-club-page-topbar
+    [title]="'courts.title' | translate"
+    [subtitle]="'courts.description' | translate"
+    [userName]="currentUserName"
+    [userSecondaryText]="currentUserEmail"
+    [userInitials]="currentUserInitials">
+    @if (isDataFallback) {
+      <div header-badges>
+        <span class="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+          {{ 'courts.syncPending' | translate }}
+        </span>
+      </div>
+    }
+
+    <div header-controls class="flex w-full flex-wrap items-center gap-3 rounded-xl bg-surface-container p-2 xl:w-auto">
+      <div class="relative min-w-[240px] flex-1 xl:w-64 xl:flex-none">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/30 text-sm">search</span>
+        <input
+          [(ngModel)]="searchQuery"
+          name="searchQuery"
+          type="text"
+          [placeholder]="'courts.searchPlaceholder' | translate"
+          class="w-full rounded-full bg-[#1a1c1f] border-none py-2 pl-10 pr-4 text-sm text-white outline-none transition-all focus:ring-1 focus:ring-blue-500" />
+      </div>
+
+      <div class="flex items-center gap-2 text-white/40">
+        <button (click)="showNotificationsFeedback()" class="flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-surface-bright hover:text-white">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <button (click)="onSupport()" class="flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-surface-bright hover:text-white">
+          <span class="material-symbols-outlined">help_outline</span>
+        </button>
+      </div>
+
+      <div class="hidden h-8 w-px bg-outline-variant/20 xl:block"></div>
+
+      <div class="flex gap-2">
+        <button (click)="changeViewMode('Grid')" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors text-blue-400 border border-white/5">
+          <span class="material-symbols-outlined">grid_view</span>
+        </button>
+        <button (click)="changeViewMode('Lista')" class="p-2.5 rounded-xl bg-transparent hover:bg-white/5 transition-colors text-white/20 border border-white/5">
+          <span class="material-symbols-outlined">list</span>
+        </button>
+      </div>
+    </div>
+  </app-club-page-topbar>
+
+  <div class="space-y-10">
+    <section>
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-4">
+          <h4 class="text-2xl font-bold text-white font-headline">{{ 'courts.panelTitle' | translate }}</h4>
+          <span class="px-3 py-1 rounded-full bg-white/5 text-white/40 text-[11px] font-bold uppercase tracking-wider border border-white/5">{{ activeCountLabel }}</span>
+        </div>
+      </div>
+
+      @if (filteredCourts.length) {
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          @for (court of filteredCourts; track court.id) {
+            <div class="bg-[#1a1c1f] hover:bg-[#1e2023] group transition-all duration-300 rounded-3xl p-6 border border-white/5 relative overflow-hidden flex flex-col h-full shadow-xl">
+              <div class="absolute top-0 right-0 p-5">
+                <div [class]="courtStatusBadgeClass(court.status)">
+                  @if (court.status === 'AVAILABLE') {
+                    <span class="h-1.5 w-1.5 rounded-full bg-[#caf300] animate-pulse"></span>
+                  }
+                  <span [class]="courtStatusTextClass(court.status)">{{ courtStatusLabel(court.status) }}</span>
+                </div>
+              </div>
+              <div class="mb-8 flex flex-col items-center justify-center py-12 bg-black/20 rounded-2xl">
+                <span class="material-symbols-outlined" [class]="courtIconClass(court.status)">{{ courtIcon(court.status) }}</span>
+              </div>
+              <div class="mt-auto">
+                <h5 class="text-xl font-bold text-white font-headline mb-1">{{ court.name }}</h5>
+                <p class="text-sm text-white/40 mb-8">{{ court.details || ('common.noData' | translate) }}</p>
+                <div class="flex gap-3">
+                  <button (click)="editCourt(court.name)"
+                          class="flex-1 h-11 rounded-xl flex items-center justify-center gap-2 bg-white/5 hover:bg-blue-600 text-white transition-all text-sm font-bold border border-white/5">
+                    <span class="material-symbols-outlined text-lg">edit</span>
+                    {{ 'courts.edit' | translate }}
+                  </button>
+                  <button (click)="deleteCourt(court.name)"
+                          class="w-11 h-11 rounded-xl flex items-center justify-center bg-white/5 hover:bg-red-500/20 text-white/40 hover:text-red-500 transition-all border border-white/5">
+                    <span class="material-symbols-outlined text-lg">delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="rounded-[32px] border border-white/5 bg-[#1a1c1f] p-12 text-center shadow-xl">
+          <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <span class="material-symbols-outlined text-4xl">sports_tennis</span>
+          </div>
+          <h5 class="text-2xl font-bold text-white font-headline">{{ emptyStateTitle }}</h5>
+          <p class="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-white/50">{{ emptyStateDescription }}</p>
+        </div>
+      }
+    </section>
+  </div>
+</main>
+
+<app-footer-bar
+  class="mt-20 px-10 pb-12 transition-all duration-300"
+  [class.ml-64]="!sidebarCollapsed"
+  [class.ml-20]="sidebarCollapsed">
+</app-footer-bar>
+
+@if (isCreateCourtModalOpen) {
+  <div class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-md" (click)="closeCreateCourtModal()"></div>
+    <div class="relative bg-[#1a1c1f] rounded-[32px] w-full max-w-md p-10 shadow-2xl border border-white/5">
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center text-blue-500">
+            <span class="material-symbols-outlined text-3xl">add_box</span>
+          </div>
+          <div>
+            <h4 class="text-2xl font-bold text-white font-headline leading-tight">{{ 'courts.modal.title' | translate }}</h4>
+            <p class="text-sm text-white/40">{{ 'courts.modal.subtitle' | translate }}</p>
+          </div>
+        </div>
+        <button (click)="closeCreateCourtModal()" class="w-10 h-10 rounded-full hover:bg-white/5 flex items-center justify-center text-white/40 transition-colors" [disabled]="isSavingCourt">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+      <form class="space-y-6" (ngSubmit)="submitCourt()">
+        <div class="space-y-2">
+          <label class="text-[11px] font-bold text-white/40 ml-1 uppercase tracking-widest">{{ 'courts.modal.nameLabel' | translate }}</label>
+          <input [(ngModel)]="courtName"
+                 name="courtName"
+                 type="text"
+                 [placeholder]="'courts.modal.namePlaceholder' | translate"
+                 class="w-full bg-black/20 border border-white/5 rounded-2xl px-5 py-4 text-white focus:ring-2 focus:ring-blue-500/50 transition-all outline-none placeholder:text-white/20"
+                 [class.ring-2]="hasCourtNameError"
+                 [class.ring-red-500]="hasCourtNameError"/>
+          @if (hasCourtNameError) {
+            <p class="text-red-400 text-xs ml-1 mt-1">{{ 'validation.required' | translate }}</p>
+          }
+        </div>
+        <div class="space-y-2">
+          <label class="text-[11px] font-bold text-white/40 ml-1 uppercase tracking-widest">{{ 'courts.modal.surfaceLabel' | translate }}</label>
+          <div class="relative">
+            <select [(ngModel)]="selectedSurfaceKey"
+                    name="selectedSurfaceKey"
+                    class="court-surface-select w-full bg-black/20 border border-white/5 rounded-2xl px-5 py-4 pr-14 text-white focus:ring-2 focus:ring-blue-500/50 transition-all outline-none appearance-none">
+              @for (surfaceKey of surfaceOptionKeys; track surfaceKey) {
+                <option [ngValue]="surfaceKey">{{ surfaceKey | translate }}</option>
+              }
+            </select>
+            <span class="material-symbols-outlined absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-white/20">expand_more</span>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <label class="text-[11px] font-bold text-white/40 ml-1 uppercase tracking-widest">{{ 'courts.modal.featuresLabel' | translate }}</label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center gap-3 p-4 bg-black/20 rounded-2xl border border-white/5 hover:border-blue-500/30 cursor-pointer transition-all">
+              <input [(ngModel)]="hasLedLighting" name="hasLedLighting" type="checkbox" class="rounded text-blue-500 focus:ring-blue-500 bg-white/5 border-white/10 h-5 w-5"/>
+              <span class="text-sm text-white/80">{{ 'courts.modal.featureLed' | translate }}</span>
+            </label>
+            <label class="flex items-center gap-3 p-4 bg-black/20 rounded-2xl border border-white/5 hover:border-blue-500/30 cursor-pointer transition-all">
+              <input [(ngModel)]="hasCover" name="hasCover" type="checkbox" class="rounded text-blue-500 focus:ring-blue-500 bg-white/5 border-white/10 h-5 w-5"/>
+              <span class="text-sm text-white/80">{{ 'courts.modal.featureCover' | translate }}</span>
+            </label>
+          </div>
+        </div>
+        <div class="pt-6 flex gap-4">
+          <button type="button" (click)="closeCreateCourtModal()"
+                  class="flex-1 bg-white/5 text-white/60 font-bold py-4 rounded-2xl hover:bg-white/10 transition-all"
+                  [disabled]="isSavingCourt">
+            {{ 'common.cancel' | translate }}
+          </button>
+          <button type="submit"
+                  class="flex-[2] signature-gradient text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 hover:brightness-110 active:scale-[0.98] transition-all shadow-xl shadow-blue-500/20"
+                  [disabled]="isSavingCourt">
+            <span class="material-symbols-outlined">save</span>
+            {{ isSavingCourt ? ('courts.modal.saving' | translate) : ('courts.modal.save' | translate) }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}

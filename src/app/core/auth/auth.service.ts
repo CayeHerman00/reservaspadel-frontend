@@ -50,7 +50,7 @@ export class AuthService {
 
   login(username: string, password: string): Observable<AuthSession> {
     return this.http
-      .post<LoginResponse>(`${this.apiUrl}/login`, { nombre: username, password })
+      .post<LoginResponse>(`${this.apiUrl}/login`, { username, password })
       .pipe(
         map(response => ({
           token: response.token,
@@ -65,8 +65,8 @@ export class AuthService {
 
   register(payload: RegisterPayload): Observable<RegisteredUser> {
     return this.http
-      .post<RegisterResponse>(`${this.apiUrl}/registro`, {
-        nombre: payload.username,
+      .post<RegisterResponse>(`${this.apiUrl}/register`, {
+        username: payload.username,
         email: payload.email,
         password: payload.password,
       })

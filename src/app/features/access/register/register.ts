@@ -98,6 +98,14 @@ export class RegisterPage {
             return;
           }
 
+          if (error.status === 400) {
+            const errors: string[] = error.error?.errors ?? [];
+            if (errors.length > 0) {
+              this.feedback.showValidationErrors(errors);
+              return;
+            }
+          }
+
           this.feedback.showUnknownError();
         }
       });

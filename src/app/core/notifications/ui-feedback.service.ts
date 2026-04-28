@@ -30,6 +30,10 @@ export class UiFeedbackService {
     this.notificationService.show(this.translateService.get('notification.unknownError'), 'error');
   }
 
+  showValidationErrors(errors: string[]): void {
+    errors.forEach(error => this.notificationService.show(error, 'error'));
+  }
+
   showLoginSuccess(name: string): void {
     this.notificationService.show(this.translateService.get('notification.loginSuccess', { name }), 'success');
   }

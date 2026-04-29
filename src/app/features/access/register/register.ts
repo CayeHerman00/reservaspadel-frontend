@@ -9,10 +9,11 @@ import { UiFeedbackService } from '@app/core/notifications/ui-feedback.service';
 import { APP_ROUTES } from '@app/shared/navigation/app-navigation';
 import { AuthShellComponent } from '@app/shared/ui/auth-shell/auth-shell';
 import { hasText, normalizeText } from '@app/shared/utils/text.utils';
+import { MatTelInput } from 'mat-tel-input';
 
 @Component({
   selector: 'app-register-page',
-  imports: [AuthShellComponent, TranslatePipe, FormsModule],
+  imports: [AuthShellComponent, TranslatePipe, FormsModule, MatTelInput],
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
@@ -22,34 +23,34 @@ export class RegisterPage {
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
 
-  username = '';
   email = '';
+  phone = '';
   password = '';
   confirmPassword = '';
-  usernameError = false;
   emailError = false;
+  phoneError = false;
   passwordError = false;
   confirmPasswordError = false;
   isSubmitting = false;
 
   submitRegistration(): void {
-    const normalizedUsername = normalizeText(this.username);
     const normalizedEmail = normalizeText(this.email);
-    this.usernameError = false;
+    const normalizedPhone = normalizeText(this.phone);
     this.emailError = false;
+    this.phoneError = false;
     this.passwordError = false;
     this.confirmPasswordError = false;
     let hasError = false;
 
-    if (!hasText(normalizedUsername)) {
-      this.usernameError = true;
-      this.feedback.showRequiredField('login.username');
-      hasError = true;
-    }
-
     if (!hasText(normalizedEmail)) {
       this.emailError = true;
       this.feedback.showRequiredField('login.email');
+      hasError = true;
+    }
+
+    if (!hasText(normalizedPhone)) {
+      this.phoneError = true;
+      this.feedback.showRequiredField('register.phone');
       hasError = true;
     }
 
@@ -80,20 +81,20 @@ export class RegisterPage {
 
     this.authService
       .register({
-        username: normalizedUsername,
         email: normalizedEmail,
+        phone: normalizedPhone,
         password: this.password,
       })
       .pipe(finalize(() => (this.isSubmitting = false)))
       .subscribe({
         next: user => {
-          this.feedback.showRegisterSuccess(user.name);
-          this.router.navigate([this.appRoutes.login], { queryParams: { username: user.name } });
+          this.feedback.showRegisterSuccess(user.email);
+          this.router.navigate([this.appRoutes.login]);
         },
         error: (error: HttpErrorResponse) => {
           if (error.status === 409) {
-            this.usernameError = true;
             this.emailError = true;
+            this.phoneError = true;
             this.feedback.showUserAlreadyExists();
             return;
           }

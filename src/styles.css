@@ -93,3 +93,20 @@
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #111316; }
 ::-webkit-scrollbar-thumb { background: #434656; border-radius: 10px; }
+
+/* mat-tel-input: dropdown oscuro (renderizado en body por CDK) */
+.cdk-overlay-container .mat-mdc-menu-panel {
+  background-color: #1e2023 !important;
+  border-radius: 0.5rem !important;
+  border: 1px solid #434656 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+  min-width: 280px !important;
+}
+
+.cdk-overlay-container .mat-mdc-menu-item {
+  color: #e2e2e6 !important;
+}
+
+.cdk-overlay-container .mat-mdc-menu-item:hover {
+  background-color: rgba(0, 82, 255, 0.12) !important;
+}

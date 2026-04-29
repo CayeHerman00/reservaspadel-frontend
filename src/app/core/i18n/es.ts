@@ -107,8 +107,6 @@ export const ES_TRANSLATIONS: Record<string, string> = {
   'login.tabSignup': 'REGISTRARSE',
   'login.welcome': 'Bienvenido de nuevo',
   'login.subtitle': 'Introduce tus credenciales para acceder al panel.',
-  'login.username': 'Usuario',
-  'login.usernamePlaceholder': 'Administrador',
   'login.email': 'Correo electrónico',
   'login.emailPlaceholder': 'nombre@empresa.com',
   'login.password': 'Contraseña',
@@ -125,6 +123,8 @@ export const ES_TRANSLATIONS: Record<string, string> = {
   // === REGISTRO ===
   'register.title': 'Crear tu cuenta',
   'register.subtitle': 'Únete a la comunidad y empieza a competir hoy.',
+  'register.phone': 'Teléfono',
+  'register.phonePlaceholder': '612 345 678',
   'register.confirmPassword': 'Confirmar contraseña',
   'register.terms': 'Acepto los Términos de Servicio y la Política de Privacidad',
   'register.button': 'Unirme al Panel',

@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { AuthService } from '@app/core/auth/auth.service';
 import { TranslatePipe } from '@app/core/i18n/translate.pipe';
@@ -19,25 +19,24 @@ import { hasText, normalizeText } from '@app/shared/utils/text.utils';
 export class LoginPage {
   readonly appRoutes = APP_ROUTES;
   private readonly feedback = inject(UiFeedbackService);
-  private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
 
-  username = this.route.snapshot.queryParamMap.get('username') ?? '';
+  email = '';
   password = '';
-  usernameError = false;
+  emailError = false;
   passwordError = false;
   isSubmitting = false;
 
   submitLogin(): void {
-    const normalizedUsername = normalizeText(this.username);
-    this.usernameError = false;
+    const normalizedEmail = normalizeText(this.email);
+    this.emailError = false;
     this.passwordError = false;
     let hasError = false;
 
-    if (!hasText(normalizedUsername)) {
-      this.usernameError = true;
-      this.feedback.showRequiredField('login.username');
+    if (!hasText(normalizedEmail)) {
+      this.emailError = true;
+      this.feedback.showRequiredField('login.email');
       hasError = true;
     }
 
@@ -54,7 +53,7 @@ export class LoginPage {
     this.isSubmitting = true;
 
     this.authService
-      .login(normalizedUsername, this.password)
+      .login(normalizedEmail, this.password)
       .pipe(finalize(() => (this.isSubmitting = false)))
       .subscribe({
         next: session => {
@@ -63,7 +62,7 @@ export class LoginPage {
         },
         error: (error: HttpErrorResponse) => {
           if (error.status === 401) {
-            this.usernameError = true;
+            this.emailError = true;
             this.passwordError = true;
             this.feedback.showInvalidCredentials();
             return;

@@ -5,14 +5,12 @@ import { finalize, map, Observable, tap } from 'rxjs';
 interface LoginResponse {
   token: string;
   type: string;
-  username: string;
   email: string;
   role: string;
 }
 
 interface RegisterResponse {
   id: number;
-  username: string;
   email: string;
   role: string;
   createdAt: string;
@@ -27,14 +25,13 @@ export interface AuthSession {
 }
 
 export interface RegisterPayload {
-  username: string;
   email: string;
+  phone: string;
   password: string;
 }
 
 export interface RegisteredUser {
   id: number;
-  name: string;
   email: string;
   role: string;
   createdAt: string;
@@ -48,16 +45,16 @@ export class AuthService {
 
   readonly session = signal<AuthSession | null>(this.loadStoredSession());
 
-  login(username: string, password: string): Observable<AuthSession> {
+  login(email: string, password: string): Observable<AuthSession> {
     return this.http
-      .post<LoginResponse>(`${this.apiUrl}/login`, { username, password })
+      .post<LoginResponse>(`${this.apiUrl}/login`, { email, password })
       .pipe(
         map(response => ({
           token: response.token,
           tokenType: response.type,
           email: response.email,
           role: response.role,
-          name: response.username,
+          name: response.email,
         })),
         tap(session => this.persistSession(session))
       );
@@ -66,14 +63,13 @@ export class AuthService {
   register(payload: RegisterPayload): Observable<RegisteredUser> {
     return this.http
       .post<RegisterResponse>(`${this.apiUrl}/register`, {
-        username: payload.username,
         email: payload.email,
+        phone: payload.phone,
         password: payload.password,
       })
       .pipe(
         map(response => ({
           id: response.id,
-          name: response.username,
           email: response.email,
           role: response.role,
           createdAt: response.createdAt,

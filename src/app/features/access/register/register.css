@@ -1,0 +1,43 @@
+/* Ajusta mat-tel-input para que encaje dentro del wrapper con el mismo aspecto que los otros inputs */
+:host ::ng-deep .phone-wrapper mat-tel-input {
+  display: block;
+  width: 100%;
+
+  --mat-tel-input-dial-code-color: var(--color-on-surface-variant);
+  --mat-tel-input-dial-code-font-size: 0.875rem;
+  --mat-tel-input-arrow-color: var(--color-on-surface-variant);
+  --mat-tel-input-flag-border-radius: 2px;
+  --mat-tel-input-dropdown-max-height: 240px;
+  --mat-tel-input-country-text-color: var(--color-on-surface);
+  --mat-tel-input-search-bg: var(--color-surface-container-high);
+  --mat-tel-input-search-color: var(--color-on-surface);
+  --mat-tel-input-search-border-color: var(--color-outline-variant);
+  --mat-tel-input-search-placeholder-color: var(--color-outline);
+}
+
+/* Input de número: padding igual que el resto de inputs */
+:host ::ng-deep .phone-wrapper input {
+  padding-top: 0.875rem !important;
+  padding-bottom: 0.875rem !important;
+  background: transparent !important;
+  color: var(--color-on-surface) !important;
+  outline: none !important;
+  border: none !important;
+  caret-color: var(--color-primary-container);
+}
+
+/* Botón selector de país: mismo padding vertical */
+:host ::ng-deep .phone-wrapper button {
+  padding-top: 0.875rem !important;
+  padding-bottom: 0.875rem !important;
+  padding-left: 0.75rem !important;
+  background: transparent !important;
+  border: none !important;
+  border-right: 1px solid var(--color-outline-variant) !important;
+  font-size: 0.8rem !important;
+}
+
+/* Texto del dial code más pequeño */
+:host ::ng-deep .phone-wrapper button {
+  font-size: 0.8rem !important;
+}

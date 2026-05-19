@@ -31,8 +31,10 @@
           [(ngModel)]="phone"
           name="phone"
           [preferredCountries]="['es', 'mx', 'ar']"
+          [placeholder]="phonePlaceholder"
           enablePlaceholder
-          enableSearch>
+          enableSearch
+          (countryChanged)="onCountryChanged($event)">
         </mat-tel-input>
       </div>
     </div>
@@ -69,7 +71,11 @@
 
     <div class="flex items-center gap-2 px-1">
       <input class="h-4 w-4 cursor-pointer rounded bg-surface-container-lowest text-primary-container transition-all focus:ring-0 focus:ring-offset-0" id="terms" type="checkbox" />
-      <label class="cursor-pointer select-none text-xs text-on-surface-variant" for="terms">{{ 'register.terms' | translate }}</label>
+      <label class="cursor-pointer select-none text-xs text-on-surface-variant" for="terms">
+        {{ 'register.termsPrefix' | translate }}
+        <a [routerLink]="appRoutes.terms" class="text-primary underline underline-offset-2 hover:brightness-125 transition-all" target="_blank">{{ 'register.termsLink' | translate }}</a>
+        {{ 'register.termsSuffix' | translate }}
+      </label>
     </div>
 
     <button

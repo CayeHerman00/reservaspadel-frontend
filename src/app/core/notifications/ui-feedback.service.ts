@@ -55,7 +55,11 @@ export class UiFeedbackService {
   }
 
   showEmailRegistered(value: string): void {
-    this.notificationService.show(this.translateService.get('notification.emailSent', { value }));
+    this.notificationService.show(this.translateService.get('notification.emailSent', { value }), 'success');
+  }
+
+  showEmailAlreadySubscribed(): void {
+    this.notificationService.show(this.translateService.get('notification.emailAlreadySubscribed'), 'error');
   }
 
   showCourtSaved(name: string): void {

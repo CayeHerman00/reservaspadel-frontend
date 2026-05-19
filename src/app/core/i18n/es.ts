@@ -3,7 +3,6 @@ export const ES_TRANSLATIONS: Record<string, string> = {
   'common.brand': 'ReservasPadel',
   'common.clubName': 'Club Pro Padel',
   'common.login': 'Iniciar sesión',
-  'common.register': 'Registrarse',
   'common.services': 'Precios',
   'common.about': 'Sobre nosotros',
   'common.support': 'Soporte',
@@ -88,7 +87,7 @@ export const ES_TRANSLATIONS: Record<string, string> = {
   'interesados.button': 'Notificarme',
   'interesados.counter': 'Únete a',
   'interesados.counterHighlight': '+50 clubes',
-  'interesados.counterSuffix': 'esperando el lanzamiento',
+  'interesados.counterSuffix': 'usuarios esperando el lanzamiento',
   'interesados.performance': 'Club Performance',
   'interesados.occupancy': 'Occupancy',
   'interesados.revenue': 'Revenue',
@@ -117,8 +116,8 @@ export const ES_TRANSLATIONS: Record<string, string> = {
   'login.contactSupport': 'Contactar Soporte',
   'login.brandTitle': 'ReservasPadel',
   'login.brandSubtitle': 'Eleva tu experiencia de gestión.',
-  'login.velocityCourt': 'Velocity Court System',
-  'login.quote': '"La forma más rápida de gestionar tu club y encontrar partidos competitivos."',
+  'login.velocityCourt': 'Sistema de gestión avanzada',
+  'login.quote': '"La forma más rápida de gestionar tu club"',
 
   // === REGISTRO ===
   'register.title': 'Crear tu cuenta',
@@ -126,7 +125,9 @@ export const ES_TRANSLATIONS: Record<string, string> = {
   'register.phone': 'Teléfono',
   'register.phonePlaceholder': '612 345 678',
   'register.confirmPassword': 'Confirmar contraseña',
-  'register.terms': 'Acepto los Términos de Servicio y la Política de Privacidad',
+  'register.termsPrefix': 'Acepto los',
+  'register.termsLink': 'Términos de Servicio',
+  'register.termsSuffix': 'y la Política de Privacidad',
   'register.button': 'Unirme al Panel',
 
   // === DASHBOARD / PANEL DE CONTROL ===
@@ -217,7 +218,8 @@ export const ES_TRANSLATIONS: Record<string, string> = {
   'notification.buttonPressed': 'Se ha pulsado el botón "{{button}}"',
   'notification.fieldMissing': 'No hay texto, falta el campo "{{field}}"',
   'notification.inputValue': 'Valor introducido: {{value}}',
-  'notification.emailSent': 'Email registrado: {{value}}',
+  'notification.emailSent': 'Ahora recibirás notificaciones a este email con el avance de la aplicación',
+  'notification.emailAlreadySubscribed': 'Este email ya está en la lista de espera',
   'notification.loginAttempt': 'Inicio de sesión con: {{value}}',
   'notification.loginSuccess': 'Bienvenido, {{name}}',
   'notification.invalidCredentials': 'El usuario o la contraseña son incorrectos',

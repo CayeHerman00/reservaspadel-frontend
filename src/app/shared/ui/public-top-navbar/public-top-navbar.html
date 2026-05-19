@@ -1,6 +1,6 @@
 <nav class="fixed top-0 z-50 flex h-20 w-full items-center justify-between border-b border-white/5 bg-[#111316]/60 px-8 shadow-2xl shadow-black/40 backdrop-blur-xl">
   <div class="flex items-center gap-8">
-    <a [routerLink]="appRoutes.home" class="text-2xl font-black tracking-tighter text-white font-headline transition-opacity hover:opacity-90">
+    <a href="/" (click)="goHome($event)" class="text-2xl font-black tracking-tighter text-white font-headline transition-opacity hover:opacity-90">
       {{ 'common.brand' | translate }}
     </a>
     <div class="hidden gap-6 md:flex">
@@ -65,9 +65,6 @@
     } @else {
       <button [routerLink]="appRoutes.login" class="rounded-lg px-5 py-2 font-medium text-white transition-all duration-200 hover:bg-[#37393d] active:scale-95">
         {{ 'common.login' | translate }}
-      </button>
-      <button [routerLink]="appRoutes.register" class="rounded-lg bg-[#0052ff] px-6 py-2.5 font-bold text-white shadow-[0_0_20px_rgba(0,82,255,0.3)] transition-all active:scale-95 hover:-translate-y-[2px]">
-        {{ 'common.register' | translate }}
       </button>
     }
   </div>

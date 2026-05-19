@@ -88,6 +88,13 @@ export class PublicTopNavbarComponent {
     }
   }
 
+  goHome(event: MouseEvent): void {
+    event.preventDefault();
+    this.router.navigateByUrl(this.appRoutes.home).then(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   private closeUserMenu(): void {
     this.userMenuOpen.set(false);
   }

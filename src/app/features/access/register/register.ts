@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { finalize } from 'rxjs';
 import { AuthService } from '@app/core/auth/auth.service';
 import { TranslatePipe } from '@app/core/i18n/translate.pipe';
@@ -9,22 +9,24 @@ import { UiFeedbackService } from '@app/core/notifications/ui-feedback.service';
 import { APP_ROUTES } from '@app/shared/navigation/app-navigation';
 import { AuthShellComponent } from '@app/shared/ui/auth-shell/auth-shell';
 import { hasText, normalizeText } from '@app/shared/utils/text.utils';
-import { MatTelInput } from 'mat-tel-input';
+import { Country, MatTelInput } from 'mat-tel-input';
 
 @Component({
   selector: 'app-register-page',
-  imports: [AuthShellComponent, TranslatePipe, FormsModule, MatTelInput],
+  imports: [AuthShellComponent, TranslatePipe, FormsModule, MatTelInput, RouterLink],
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
 export class RegisterPage {
   readonly appRoutes = APP_ROUTES;
+
   private readonly feedback = inject(UiFeedbackService);
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
 
   email = '';
   phone = '';
+  phonePlaceholder = ' ';
   password = '';
   confirmPassword = '';
   emailError = false;
@@ -110,6 +112,12 @@ export class RegisterPage {
           this.feedback.showUnknownError();
         }
       });
+  }
+
+  onCountryChanged(country: Country): void {
+    const full = country.placeHolder?.toString() ?? '';
+    const prefix = `+${country.dialCode}`;
+    this.phonePlaceholder = full.startsWith(prefix) ? full.slice(prefix.length) : full;
   }
 
   onContactSupport(): void {
